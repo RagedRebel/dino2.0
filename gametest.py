@@ -14,14 +14,13 @@ player=pygame.Rect((300,250,50,50))
 while run:
 	screen.fill((0,0,0))
 
-	pygame.draw.rect(screen,(255,0,0),player)
+	pygame.draw.rect(screen,(255,255,255),player)
 	key=pygame.key.get_pressed()
 	if key[pygame.K_a]==True:
 		player.move_ip(-1,0)
 
 	elif key[pygame.K_d]==True:
 		player.move_ip(1,0)
-
 	elif key[pygame.K_w]==True:
 		player.move_ip(0,-1)
 
