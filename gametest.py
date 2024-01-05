@@ -1,4 +1,5 @@
 import pygame
+import random
 pygame.init()
 
 screen_width=800
@@ -12,10 +13,20 @@ pygame.display.set_icon(icon)
 
 #======================OBSTACLE IMAGES========================
 jellyfish=pygame.image.load("jellyfish.png")
-ob1x=300
-ob1y=300
+ob1x=750
+ob1y=random.randint(1,3)
 def ob1(x,y):
-	screen.blit(jellyfish,(x,y))
+	if y==2:
+		yy=270
+		screen.blit(jellyfish,(x,yy))
+	elif y==1:
+		yy=70
+		screen.blit(jellyfish,(x,yy))
+	else:
+		yy=470
+		screen.blit(jellyfish,(x,yy))
+
+	
 
 
 
