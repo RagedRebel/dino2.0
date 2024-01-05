@@ -10,6 +10,13 @@ icon=pygame.image.load("velociraptor.png")
 pygame.display.set_icon(icon)
 
 
+#======================OBSTACLE IMAGES========================
+jellyfish=pygame.image.load("jellyfish.png")
+ob1x=300
+ob1y=300
+def ob1(x,y):
+	screen.blit(jellyfish,(x,y))
+
 
 
 #===========================SCREEN CREATION===========================
@@ -22,7 +29,17 @@ run =True
 while run:
 	screen.fill((53, 118, 230))    #BACKGROUND FILL
 	
-	print("this is a new branch")
+	#=======================OBSTACLES================================
+
+
+
+	ob1(ob1x,ob1y)
+
+
+	for event in pygame.event.get():
+		if event.type==pygame.QUIT:
+			run=False
+
 
 	pygame.display.update() 
 pygame.quit()
