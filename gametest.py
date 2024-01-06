@@ -20,13 +20,15 @@ run =True
 
 #=============================GAME LOOP==============================
 while run:
-	screen.fill((53, 118, 230))    #BACKGROUND FILL
+	screen.fill((53, 118, 230))  
+ #BACKGROUND FILL
 	
 	
 
 	for event in pygame.event.get():
 		if event.type==pygame.QUIT:
 			run=False
+			print("apek")
 	pygame.display.update()
   
 pygame.quit()
