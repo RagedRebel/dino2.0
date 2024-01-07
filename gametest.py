@@ -15,14 +15,20 @@ pygame.display.set_icon(icon)
 jellyfish=pygame.image.load("jellyfish.png")
 ob1x=750
 rl1=random.randint(1,3)
-if rl1==1:
-	ob1y=70
-elif rl1==2:
-	ob1y=270
-else:
-	ob1y=470
-def ob1(x,y):
-	
+
+def yvalue(x):
+	ob1y=0
+	if x==1:
+		ob1y=70
+		return ob1y
+	elif x==2:
+		ob1y=270
+		return ob1y
+	else:
+		ob1y=470
+		return ob1y
+def ob1(x):
+		y=yvalue(rl1)
 		screen.blit(jellyfish,(x,y))
 
 	
@@ -43,9 +49,12 @@ while run:
 
 
 
-	ob1(ob1x,ob1y)
+	ob1(ob1x)
 	if ob1x<0:
-		break
+		ob1x=750
+		rl1=random.randint(1,3)
+		
+		
 	else:
 		ob1x-=0.12
 
