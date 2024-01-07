@@ -4,32 +4,29 @@ pygame.init()
 screen_width=800
 screen_height=600
 
-#screen creation
+#=====================TITLE AND ICON===============================
+pygame.display.set_caption("Dino Game")
+icon=pygame.image.load("velociraptor.png")
+pygame.display.set_icon(icon)
+
+
+
+
+#===========================SCREEN CREATION===========================
 screen=pygame.display.set_mode((screen_width,screen_height))
 
 run =True
-player=pygame.Rect((300,250,50,50))
 
-#game loop
+
+#=============================GAME LOOP==============================
 while run:
-	screen.fill((0,0,0))
-
-	pygame.draw.rect(screen,(255,255,255),player)
-	key=pygame.key.get_pressed()
-	if key[pygame.K_a]==True:
-		player.move_ip(-1,0)
-
-	elif key[pygame.K_d]==True:
-		player.move_ip(1,0)
-	elif key[pygame.K_w]==True:
-		player.move_ip(0,-1)
-
-	elif key[pygame.K_s]==True:
-		player.move_ip(0,1)
+	screen.fill((53, 118, 230))    #BACKGROUND FILL
+	
+	
 
 	for event in pygame.event.get():
 		if event.type==pygame.QUIT:
 			run=False
 	pygame.display.update()
-
+  
 pygame.quit()
