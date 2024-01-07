@@ -13,6 +13,9 @@ pygame.display.set_icon(icon)
 
 #======================OBSTACLE IMAGES========================
 jellyfish=pygame.image.load("jellyfish.png")
+
+
+#====================OBSTACLE POSTIONS=======================
 ob1x=750
 rl1=random.randint(1,3)
 
@@ -37,7 +40,6 @@ def ob1(x):
 
 #===========================SCREEN CREATION===========================
 screen=pygame.display.set_mode((screen_width,screen_height))
-
 run =True
 
 
@@ -45,7 +47,7 @@ run =True
 while run:
 	screen.fill((53, 118, 230))    #BACKGROUND FILL
 	
-	#=======================OBSTACLES================================
+#=======================OBSTACLES================================
 
 
 
@@ -53,8 +55,6 @@ while run:
 	if ob1x<0:
 		ob1x=750
 		rl1=random.randint(1,3)
-		
-		
 	else:
 		ob1x-=0.12
 
