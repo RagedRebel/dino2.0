@@ -65,7 +65,7 @@ while run:
 		ob1x=750
 		rl1=random.randint(1,3)
 	else:
-		ob1x-=0.15
+		ob1x-=0.12
 	
 	ob2(ob2x)
 	if ob2x<0:
