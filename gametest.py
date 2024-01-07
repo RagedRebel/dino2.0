@@ -15,6 +15,7 @@ pygame.display.set_icon(icon)
 jellyfish=pygame.image.load("jellyfish.png")	
 fish=pygame.image.load("angler.png")
 octo=pygame.image.load("octopus.png")
+shark=pygame.image.load("megashark.png")
 
 
 
@@ -51,6 +52,14 @@ rl3=random.randint(1,3)
 def ob3(x):
 		ob3y=yvalue(rl3)
 		screen.blit(octo,(x,ob3y))
+
+#OBSTACLE 4 SHARK
+ob4x=750
+ob4y=0
+rl4=random.randint(1,3)
+def ob4(x):
+		ob4y=yvalue(rl4)
+		screen.blit(shark,(x,ob4y))
 		
 		
 
@@ -76,21 +85,29 @@ while run:
 		ob1x=750
 		rl1=random.randint(1,3)
 	else:
-		ob1x-=0.12
+		ob1x-=0.135
 	
 	ob2(ob2x)
 	if ob2x<0:
 		ob2x=750
 		rl2=random.randint(1,3)
 	else:
-		ob2x-=0.15
+		ob2x-=0.11
 
 	ob3(ob3x)
 	if ob3x<0:
 		ob3x=750
 		rl3=random.randint(1,3)
 	else:
-		ob3x-=0.135
+		ob3x-=0.14
+
+	ob4(ob4x)
+	if ob4x<0:
+		ob4x=750
+		rl4=random.randint(1,3)
+	else:
+		ob4x-=0.2
+	
 
 
 
