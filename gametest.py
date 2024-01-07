@@ -11,28 +11,37 @@ icon=pygame.image.load("velociraptor.png")
 pygame.display.set_icon(icon)
 
 
-#======================OBSTACLE IMAGES========================
-jellyfish=pygame.image.load("jellyfish.png")
+#======================OBSTACLE IMAGES===========================
+jellyfish=pygame.image.load("jellyfish.png")	
+fish=pygame.image.load("angler.png")
 
 
 #====================OBSTACLE POSTIONS=======================
-ob1x=750
-rl1=random.randint(1,3)
 
 def yvalue(x):
-	ob1y=0
 	if x==1:
-		ob1y=70
-		return ob1y
+		return 70
 	elif x==2:
-		ob1y=270
-		return ob1y
+		return 270
 	else:
-		ob1y=470
-		return ob1y
+		return 470
+	
+#OBSTACLE 1 JELLYFISH
+ob1x=750
+rl1=random.randint(1,3)
+ob1y=0
 def ob1(x):
-		y=yvalue(rl1)
-		screen.blit(jellyfish,(x,y))
+		ob1y=yvalue(rl1)
+		screen.blit(jellyfish,(x,ob1y))
+
+#OBSTACLE 2 ANGLER FISH
+ob2x=750
+ob2y=0
+rl2=random.randint(1,3)
+def ob2(x):
+		ob2y=yvalue(rl2)
+		screen.blit(fish,(x,ob2y))
+		
 
 	
 
@@ -56,7 +65,15 @@ while run:
 		ob1x=750
 		rl1=random.randint(1,3)
 	else:
-		ob1x-=0.12
+		ob1x-=0.15
+	
+	ob2(ob2x)
+	if ob2x<0:
+		ob2x=750
+		rl2=random.randint(1,3)
+	else:
+		ob2x-=0.15
+
 
 
 	for event in pygame.event.get():
