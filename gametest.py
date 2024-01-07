@@ -14,6 +14,8 @@ pygame.display.set_icon(icon)
 #======================OBSTACLE IMAGES===========================
 jellyfish=pygame.image.load("jellyfish.png")	
 fish=pygame.image.load("angler.png")
+octo=pygame.image.load("octopus.png")
+
 
 
 #====================OBSTACLE POSTIONS=======================
@@ -41,6 +43,15 @@ rl2=random.randint(1,3)
 def ob2(x):
 		ob2y=yvalue(rl2)
 		screen.blit(fish,(x,ob2y))
+
+#OBSTACLE 3 OCTOPUS
+ob3x=750
+ob3y=0
+rl3=random.randint(1,3)
+def ob3(x):
+		ob3y=yvalue(rl3)
+		screen.blit(octo,(x,ob3y))
+		
 		
 
 	
@@ -73,6 +84,14 @@ while run:
 		rl2=random.randint(1,3)
 	else:
 		ob2x-=0.15
+
+	ob3(ob3x)
+	if ob3x<0:
+		ob3x=750
+		rl3=random.randint(1,3)
+	else:
+		ob3x-=0.135
+
 
 
 
