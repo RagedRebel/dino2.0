@@ -17,8 +17,8 @@ dinoimg = pygame.image.load("allosaurus.png")
 dinoX = 20
 dinoY = 270
 
-def dino():
-	screen.blit(dinoimg,(dinoX,dinoY))
+def dino(x,y):
+	screen.blit(dinoimg,(x,y))
 
 
 #======================OBSTACLE IMAGES===========================
@@ -99,7 +99,7 @@ while run:
 	scroll -= 6
 	if abs(scroll) > backg.get_width(): 
 		scroll = 0
-	dino()
+	
 
 #==============================OBSTACLE CALL==============================
 	ob1(ob1x)
@@ -129,6 +129,8 @@ while run:
 		rl4=random.randint(1,3)
 	else:
 		ob4x-=7
+		
+	dino(dinoX,dinoY)
 	
 	for event in pygame.event.get():
 		if event.type==pygame.QUIT:
