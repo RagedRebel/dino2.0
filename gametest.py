@@ -109,21 +109,9 @@ while run:
 		ob4x-=0.2
 	
 
-<<<<<<< HEAD
 	for event in pygame.event.get():
 		if event.type==pygame.QUIT:
 			run=False
 	pygame.display.update()
   
-=======
-
-
-
-	for event in pygame.event.get():
-		if event.type==pygame.QUIT:
-			run=False
-
-
-	pygame.display.update() 
->>>>>>> 923cde67aef64059d7414c900fdc64fc5146c2d4
 pygame.quit()
