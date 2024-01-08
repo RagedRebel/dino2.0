@@ -3,7 +3,7 @@ import random
 import math
 pygame.init()
 
-screen_width=800
+screen_width=800	
 screen_height=600
 bg_colour = (135, 206, 250)
 
