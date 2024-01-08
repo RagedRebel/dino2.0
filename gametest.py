@@ -27,6 +27,29 @@ fish=pygame.image.load("angler.png")
 octo=pygame.image.load("octopus.png")
 shark=pygame.image.load("megashark.png")
 
+#this is collision
+def game_over():
+	text = font.render("Game Over", True, black) 
+	screen.blit(text, (width/2 - 100, height/2 - 25))
+	pygame.display.update()
+	pygame.time.delay(2000)
+    pygame.quit()
+    sys.exit()
+spawn_obstacle_timer = 0
+
+#scoreboard
+class Score:
+    def __init__(self):
+        self.value = 0
+        self.font = pygame.font.Font(None, 40)
+
+    def increase(self):
+        self.value +=1
+
+
+    def renderscore(self):
+        score_text = self.font.renderscore(f"Score: {self.value}", True, WHITE)
+        return score_text
 
 
 #====================OBSTACLE POSTIONS=======================
@@ -99,6 +122,32 @@ while run:
 	scroll -= 6
 	if abs(scroll) > backg.get_width(): 
 		scroll = 0
+		#this is obstacle
+		keys = pygame.key.get_pressed()
+    dino_rect.x += keys[pygame.K_RIGHT] * dino_speed
+    dino_rect.x -= keys[pygame.K_LEFT] * dino_speed
+
+    if obstacle_spawner_timer == 0:
+        obstacle_spawner()
+        obstacle_spawner_timer = random.randint(60, 120)  # this shit will make spawning random
+
+    for obstacle_rect in obstacles:
+        obstacle_rect.x -= obstacle_speed
+
+        if dino_rect.colliderect(obstacle_rect):
+            game_over()
+
+        if obstacle_rect.x + obstacle_rect.width < 0:
+            obstacles.remove(obstacle_rect)
+
+    obstacle_spawner_timer = max(0, obstacle_spawner_timer - 1)
+
+    screen.fill(white)
+    screen.blit(dino_image, dino_rect)
+
+    for obstacle_rect in obstacles:
+        screen.blit(obstacle_image, obstacle_rect)
+
 	
 
 #==============================OBSTACLE CALL==============================
@@ -131,6 +180,14 @@ while run:
 		ob4x-=7
 		
 	dino(dinoX,dinoY)
+	#score 
+	score = Score()
+
+score_text = score.renderscore()
+screen.blit(score_text, (20, 20))
+
+score.increase()
+
 	
 	for event in pygame.event.get():
 		if event.type==pygame.QUIT:
