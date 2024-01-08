@@ -1,4 +1,5 @@
 import pygame
+from pygame import mixer
 import math
 pygame.init()
 
@@ -10,7 +11,9 @@ bg_colour = (135, 206, 250)
 pygame.display.set_caption("Dino Game <3")
 icon=pygame.image.load("velociraptor.png")
 pygame.display.set_icon(icon)
-
+#==================music===================
+mixer.music.load("ruebbnen.mp3")
+mixer.music.play(-1)
 #=====================PLAYER=======================================
 dinoimg = pygame.image.load("allosaurus.png")
 dinoX = 0
@@ -19,8 +22,12 @@ dinoY = 270
 def dino():
 	screen.blit(dinoimg,(dinoX,dinoY))
 
-#=====================BACKGROUNDUNDERWTAERRRR=====
-
+#music for jumping
+jump_Sound = mixer.Sound("jumpp.mp3")
+jump_Sound.play()
+#music for death
+death_Sound = mixer.Sound("pewpew.mp3")
+death_Sound.play()
 
 #===========================SCREEN CREATION===========================
 screen=pygame.display.set_mode((screen_width,screen_height))
