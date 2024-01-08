@@ -14,7 +14,7 @@ pygame.display.set_icon(icon)
 
 #=====================PLAYER=======================================
 dinoimg = pygame.image.load("allosaurus.png")
-dinoX = 0
+dinoX = 20
 dinoY = 270
 
 def dino():
