@@ -129,11 +129,21 @@ while run:
 		rl4=random.randint(1,3)
 	else:
 		ob4x-=7
-		
-	dino(dinoX,dinoY)
+#==========================DINO MOVEMENT===============================
+
 	
 	for event in pygame.event.get():
+		if event.type==pygame.KEYDOWN:
+			if event.key==pygame.K_w:
+				dinoY-=200
+			if event.key==pygame.K_s:
+				dinoY+=200
 		if event.type==pygame.QUIT:
 			run=False
+	if dinoY<0:
+		dinoY+=100						#BOUNDARY SETTING
+	elif dinoY>550:
+		dinoY-=100
+	dino(dinoX,dinoY)
 	pygame.display.update()
 pygame.quit()
