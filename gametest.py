@@ -1,4 +1,5 @@
 import pygame
+from pygame import mixer
 import random
 import math
 pygame.init()
@@ -12,6 +13,10 @@ pygame.display.set_caption("Dino Game <3")
 icon=pygame.image.load("velociraptor.png")
 pygame.display.set_icon(icon)
 font = pygame.font.SysFont('tahoma', 52, pygame.font.Font.bold)
+
+#==================MUSIC=======================================
+mixer.music.load("ruebbnen.mp3")
+mixer.music.play(-1)
 
 #=====================PLAYER=======================================
 dinoimg = pygame.image.load("allosaurus.png")
@@ -107,6 +112,12 @@ def game_over():
 	pygame.display.update()
 	pygame.time.delay(2000)
 
+#================music for jumping===================
+jump_Sound = mixer.Sound("jumpp.mp3")
+
+#=========music for death===================================
+death_Sound = mixer.Sound("pewpew.mp3")
+
 #===========================SCREEN CREATION===========================
 		
 screen=pygame.display.set_mode((screen_width,screen_height))
@@ -142,8 +153,10 @@ while run:
 	for event in pygame.event.get():
 		if event.type==pygame.KEYDOWN:
 			if event.key==pygame.K_w:
+				jump_Sound.play()
 				dinoY-=200
 			if event.key==pygame.K_s:
+				jump_Sound.play()
 				dinoY+=200
 		if event.type==pygame.QUIT:
 			run=False
@@ -195,6 +208,8 @@ while run:
 	c3=CollisionCheck(dinoX,dinoY,ob3x,ob3y)
 	c4=CollisionCheck(dinoX,dinoY,ob4x,ob4y)
 	if c1 or c2 or c3 or c4:
+		death_Sound.play()
+		pygame.mixer.music.stop()
 		game_over()
 		break
 
