@@ -11,6 +11,7 @@ bg_colour = (135, 206, 250)
 pygame.display.set_caption("Dino Game <3")
 icon=pygame.image.load("velociraptor.png")
 pygame.display.set_icon(icon)
+font = pygame.font.SysFont('tahoma', 52, pygame.font.Font.bold)
 
 #=====================PLAYER=======================================
 dinoimg = pygame.image.load("allosaurus.png")
@@ -83,6 +84,30 @@ def CollisionCheck(x1,y1,x2,y2):
 	else:
 		return False
 
+#==============================SCORE=====================================
+	
+class Score:
+    def __init__(self):
+        self.value = 0
+        self.font = pygame.font.Font(None, 40)
+
+    def increase(self):
+        self.value +=1
+
+
+    def renderscore(self):
+        score_text = self.font.render(f"Score: {self.value}", True, (0,0,0))
+        return score_text
+
+	
+#===============================GAME OVER===================================
+def game_over():
+	text = font.render("Game Over", True,(0,0,0)) 
+	screen.blit(text, (270 ,270))
+	pygame.display.update()
+	pygame.time.delay(2000)
+	pygame.quit()
+
 #===========================SCREEN CREATION===========================
 		
 screen=pygame.display.set_mode((screen_width,screen_height))
@@ -103,13 +128,19 @@ while run:
 	clock.tick(33)
 	i = 0 
 	while(i < tiles): 
-		screen.blit(backg, (backg.get_width()*i 
-                         + scroll, 0)) 
+		screen.blit(backg, (backg.get_width()*i + scroll, 0)) 
 		i += 1
 	scroll -= 6
 	if abs(scroll) > backg.get_width(): 
 		scroll = 0
 	
+#========================SCORE COUNT===================================
+	score = Score()
+
+	score_text = score.renderscore()
+	screen.blit(score_text, (20, 20))
+
+	score.increase()
 #==========================DINO MOVEMENT===============================
 	
 	for event in pygame.event.get():
@@ -157,13 +188,14 @@ while run:
 		rl4=random.randint(1,3)
 	else:
 		ob4x-=7
+
 #============================COLLLISION CHECKS==============================
 	c1=CollisionCheck(dinoX,dinoY,ob1x,ob1y)
 	c2=CollisionCheck(dinoX,dinoY,ob2x,ob2y)
 	c3=CollisionCheck(dinoX,dinoY,ob3x,ob3y)
 	c4=CollisionCheck(dinoX,dinoY,ob4x,ob4y)
 	if c1 or c2 or c3 or c4:
-		print("game over ")
-		break
+		game_over()
+
 	pygame.display.update()
 pygame.quit()
