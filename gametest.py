@@ -134,7 +134,7 @@ score = Score()
 #=============================GAME LOOP==============================
 while run:
 	screen.fill((bg_colour))  
- #=================BACKGROUND FIL====================================L
+ #=================BACKGROUND FIL====================================
 	screen.blit(resized_image, (0,0))
 	clock.tick(33)
 	i = 0 
