@@ -71,11 +71,16 @@ def ob4(x):
 		ob4y=yvalue(rl4)
 		screen.blit(shark,(x,ob4y))
 
-
-
-
+#=============================COLLIIONS============================
+def CollisionCheck(x1,y1,x2,y2):
+	distance=math.sqrt((math.pow(x2-x1,2))+(math.pow(y2-y1,2)))	
+	if distance<200:
+		return True
+	else:
+		return False
 
 #===========================SCREEN CREATION===========================
+		
 screen=pygame.display.set_mode((screen_width,screen_height))
 run =True
 clock = pygame.time.Clock()
@@ -85,6 +90,7 @@ tiles = math.ceil(screen_width / backg.get_width()) + 1
 
 original_image = pygame.image.load("doraaaaaaaa.jpg")
 resized_image = pygame.transform.scale(original_image, (800,600))
+
 #=============================GAME LOOP==============================
 while run:
 	screen.fill((bg_colour))  
@@ -101,7 +107,7 @@ while run:
 		scroll = 0
 	
 
-#==============================OBSTACLE CALL==============================
+#==============================OBSTACLE CALLS==============================
 	ob1(ob1x)
 	if ob1x<0:
 		ob1x=750
@@ -130,7 +136,6 @@ while run:
 	else:
 		ob4x-=7
 #==========================DINO MOVEMENT===============================
-
 	
 	for event in pygame.event.get():
 		if event.type==pygame.KEYDOWN:
@@ -140,10 +145,20 @@ while run:
 				dinoY+=200
 		if event.type==pygame.QUIT:
 			run=False
+
 	if dinoY<0:
 		dinoY+=100						#BOUNDARY SETTING
 	elif dinoY>550:
 		dinoY-=100
+
 	dino(dinoX,dinoY)
+#============================COLLLISION CHECKS==============================
+	c1=CollisionCheck(dinoX,dinoY,ob1x,ob1y)
+	c2=CollisionCheck(dinoX,dinoY,ob2x,ob2y)
+	c3=CollisionCheck(dinoX,dinoY,ob3x,ob3y)
+	c4=CollisionCheck(dinoX,dinoY,ob4x,ob4y)
+	if c1 or c2 or c3 or c4:
+		print("game over")
+		break
 	pygame.display.update()
 pygame.quit()
