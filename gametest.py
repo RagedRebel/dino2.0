@@ -119,6 +119,7 @@ tiles = math.ceil(screen_width / backg.get_width()) + 1
 
 original_image = pygame.image.load("doraaaaaaaa.jpg")
 resized_image = pygame.transform.scale(original_image, (800,600))
+score = Score()
 
 #=============================GAME LOOP==============================
 while run:
@@ -135,12 +136,8 @@ while run:
 		scroll = 0
 	
 #========================SCORE COUNT===================================
-	score = Score()
-
 	score_text = score.renderscore()
 	screen.blit(score_text, (20, 20))
-
-	score.increase()
 #==========================DINO MOVEMENT===============================
 	
 	for event in pygame.event.get():
@@ -165,29 +162,33 @@ while run:
 	if ob1x<0:
 		ob1x=750
 		rl1=random.randint(1,3)
+		score.increase()
 	else:
-		ob1x-=3
+		ob1x-=6
 	
 	ob2y=ob2(ob2x)
 	if ob2x<0:
 		ob2x=750
 		rl2=random.randint(1,3)
+		score.increase()
 	else:
-		ob2x-=4
+		ob2x-=8
 
 	ob3y=ob3(ob3x)
 	if ob3x<0:
 		ob3x=750
 		rl3=random.randint(1,3)
+		score.increase()
 	else:
-		ob3x-=6
+		ob3x-=11
 
 	ob4y=ob4(ob4x)
 	if ob4x<0:
 		ob4x=750
 		rl4=random.randint(1,3)
+		score.increase()
 	else:
-		ob4x-=7
+		ob4x-=13
 
 #============================COLLLISION CHECKS==============================
 	c1=CollisionCheck(dinoX,dinoY,ob1x,ob1y)
