@@ -106,7 +106,6 @@ def game_over():
 	screen.blit(text, (270 ,270))
 	pygame.display.update()
 	pygame.time.delay(2000)
-	pygame.quit()
 
 #===========================SCREEN CREATION===========================
 		
@@ -197,6 +196,7 @@ while run:
 	c4=CollisionCheck(dinoX,dinoY,ob4x,ob4y)
 	if c1 or c2 or c3 or c4:
 		game_over()
+		break
 
 	pygame.display.update()
 pygame.quit()
