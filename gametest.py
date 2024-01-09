@@ -25,7 +25,7 @@ def dino(x,y):
 jellyfish=pygame.image.load("jellyfish.png")	
 fish=pygame.image.load("angler.png")
 octo=pygame.image.load("octopus.png")
-shark=pygame.image.load("megashark.png")
+shark=pygame.image.load("shark.png")
 
 
 
@@ -44,37 +44,44 @@ ob1x=750
 rl1=random.randint(1,3)
 ob1y=0
 def ob1(x):
-		ob1y=yvalue(rl1)
+		y1=yvalue(rl1)
 		screen.blit(jellyfish,(x,ob1y))
-
+		return y1
 #OBSTACLE 2 ANGLER FISH
 ob2x=750
 ob2y=0
 rl2=random.randint(1,3)
 def ob2(x):
-		ob2y=yvalue(rl2)
+		y2=yvalue(rl2)
 		screen.blit(fish,(x,ob2y))
+		return y2
 
 #OBSTACLE 3 OCTOPUS
 ob3x=750
 ob3y=0
 rl3=random.randint(1,3)
 def ob3(x):
-		ob3y=yvalue(rl3)
+		y3=yvalue(rl3)
 		screen.blit(octo,(x,ob3y))
+		return y3
+		
 
 #OBSTACLE 4 SHARK
 ob4x=750
 ob4y=0
 rl4=random.randint(1,3)
 def ob4(x):
-		ob4y=yvalue(rl4)
+		y4=yvalue(rl4)
 		screen.blit(shark,(x,ob4y))
+		return y4
 
 #=============================COLLIIONS============================
 def CollisionCheck(x1,y1,x2,y2):
-	if x2<=x1 and y1==y2:
+	distance=math.sqrt((math.pow(x2-x1,2))+(math.pow(y2-y1,2)))	
+	if distance<27:
 		return True
+	else:
+		return False
 
 #===========================SCREEN CREATION===========================
 		
@@ -123,28 +130,28 @@ while run:
 
 
 #==============================OBSTACLE CALLS==============================
-	ob1(ob1x)
+	ob1y=ob1(ob1x)
 	if ob1x<0:
 		ob1x=750
 		rl1=random.randint(1,3)
 	else:
 		ob1x-=3
 	
-	ob2(ob2x)
+	ob2y=ob2(ob2x)
 	if ob2x<0:
 		ob2x=750
 		rl2=random.randint(1,3)
 	else:
 		ob2x-=4
 
-	ob3(ob3x)
+	ob3y=ob3(ob3x)
 	if ob3x<0:
 		ob3x=750
 		rl3=random.randint(1,3)
 	else:
 		ob3x-=6
 
-	ob4(ob4x)
+	ob4y=ob4(ob4x)
 	if ob4x<0:
 		ob4x=750
 		rl4=random.randint(1,3)
@@ -155,19 +162,8 @@ while run:
 	c2=CollisionCheck(dinoX,dinoY,ob2x,ob2y)
 	c3=CollisionCheck(dinoX,dinoY,ob3x,ob3y)
 	c4=CollisionCheck(dinoX,dinoY,ob4x,ob4y)
-	if c1==True:
-		print("game over c1")
+	if c1 or c2 or c3 or c4:
+		print("game over ")
 		break
-	elif c2==True:
-		print("game over c2")
-		break
-	elif c3==True:
-		print("game over c3")
-		break
-	elif c4==True:
-		print("game over c4")
-		break
-	else:
-		pass
 	pygame.display.update()
 pygame.quit()
